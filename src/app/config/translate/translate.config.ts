@@ -3,7 +3,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
 export const TranslateConfigModule = TranslateModule.forRoot({
-  useDefaultLang: false,
+  useDefaultLang: true,
   defaultLanguage: navigator.language,
   loader: {
     provide: TranslateLoader,

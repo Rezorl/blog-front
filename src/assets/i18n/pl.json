@@ -1,3 +1,11 @@
 {
-
+  "nav-bar": {
+    "app-name": "Post app",
+    "posts": "Posty",
+    "language": "Język",
+    "languages": {
+      "pl": "Polski",
+      "en": "Angielski"
+    }
+  }
 }
