@@ -7,5 +7,9 @@
       "pl": "Polish",
       "en": "English"
     }
+  },
+  "page-not-found": {
+    "title": "The page you are looking for was not found.",
+    "back-to-post": "Back to post page"
   }
 }

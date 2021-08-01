@@ -7,5 +7,9 @@
       "pl": "Polski",
       "en": "Angielski"
     }
+  },
+  "page-not-found": {
+    "title": "Strona której szukasz nie istnieje.",
+    "back-to-post": "Wróc do przeglądania postów"
   }
 }
