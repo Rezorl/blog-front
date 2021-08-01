@@ -1,0 +1,31 @@
+<div class="container" *ngIf="posts$ | async as posts">
+  <div class="row mt-3">
+    <ng-container *ngFor="let post of posts"
+                  [ngTemplateOutlet]="postTemp"
+                  [ngTemplateOutletContext] ="{post: post}">
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #postTemp let-post="post">
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="card m-1">
+      <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+      </div>
+      <div class="card-body">
+        <button type="button"
+                [routerLink]="['/posts', post.id]"
+                class="btn btn-primary">
+          {{'posts.display' | translate}}
+        </button>
+        &nbsp;
+        <button type="button"
+                class="btn btn-danger"
+                (click)="removePost(post.id)">
+          {{'posts.remove' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

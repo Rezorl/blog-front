@@ -11,5 +11,9 @@
   "page-not-found": {
     "title": "Strona której szukasz nie istnieje.",
     "back-to-post": "Wróc do przeglądania postów"
+  },
+  "posts": {
+    "display": "Zobacz",
+    "remove": "Usuń"
   }
 }

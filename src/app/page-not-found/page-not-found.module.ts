@@ -1,11 +1,13 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {PageNotFoundComponent} from './component';
 import {PageNotFoundRoutingModule} from './page-not-found-routing.module';
 import {TranslateModule} from '@ngx-translate/core';
+import * as fromComponents from './components';
 
 @NgModule({
-  declarations: [PageNotFoundComponent],
+  declarations: [
+    fromComponents.components
+  ],
   imports: [
     CommonModule,
     PageNotFoundRoutingModule,

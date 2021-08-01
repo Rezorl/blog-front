@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {TranslateConfigModule} from './config';
 import {HttpClientModule} from '@angular/common/http';
 import {NavBarModule} from './nav-bar';
+import {StoreModule} from '@ngrx/store';
+import {AppConfigModule} from './config';
 
 @NgModule({
   declarations: [
@@ -13,9 +14,10 @@ import {NavBarModule} from './nav-bar';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TranslateConfigModule,
+    StoreModule.forRoot({}),
     HttpClientModule,
-    NavBarModule
+    NavBarModule,
+    AppConfigModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
