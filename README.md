@@ -2,7 +2,7 @@
 
 Project goal: learning [NgRX](https://ngrx.io/)
 
-# How to run app
+# How to run
 
 ```
 npm i json-server -g
