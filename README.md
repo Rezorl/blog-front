@@ -1,6 +1,6 @@
-# Blog app
+# Project goal
 
-Project goal: learning [NgRX](https://ngrx.io/)
+Learning [NgRX](https://ngrx.io/)
 
 # How to run
 
