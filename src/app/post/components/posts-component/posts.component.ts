@@ -14,5 +14,7 @@ export class PostsComponent {
 
   constructor(private readonly store: Store<fromPosts.PostState>) { }
 
-  removePost(id: number) {}
+  removePost(postId: number) {
+    this.store.dispatch(new fromPosts.RemovePostAction({postId}))
+  }
 }

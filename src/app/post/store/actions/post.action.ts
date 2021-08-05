@@ -5,6 +5,7 @@ export enum PostActionType {
   LOAD_POSTS = '[Posts] Load Posts',
   LOAD_POSTS_SUCCESS = '[Posts] Load Posts Success',
   LOAD_POSTS_FAIL = '[Posts] Load Posts Fail',
+  REMOVE_POST = '[Posts] Remove Post'
 }
 
 export class LoadPostAction implements Action {
@@ -29,4 +30,18 @@ export class LoadPostFailAction implements Action {
   readonly type = PostActionType.LOAD_POSTS_FAIL;
 }
 
-export type PostAction = LoadPostAction | LoadPostSuccessAction | LoadPostFailAction;
+interface RemovePostPayload {
+  postId: number;
+}
+
+export class RemovePostAction implements Action {
+  readonly type = PostActionType.REMOVE_POST;
+
+  constructor(private _payload: RemovePostPayload) {}
+
+  get payload(): RemovePostPayload {
+    return this._payload;
+  }
+}
+
+export type PostAction = LoadPostAction | LoadPostSuccessAction | LoadPostFailAction | RemovePostAction;

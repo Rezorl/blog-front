@@ -1,22 +1,21 @@
 import {Post} from '../models';
 import * as fromPosts from '../actions';
+import {PostActionType} from '../actions';
 
 export interface PostState {
-  posts: Post[];
+  data: Post[];
   loading: boolean;
-  error: boolean;
   loaded: boolean;
 }
 
 const initialState: PostState = {
-  posts: [
+  data: [
     {
       id: 1,
-      description: 'description',
-      title: 'title'
+      description: 'description 1',
+      title: 'title 1'
     }
   ],
-  error: false,
   loading: false,
   loaded: false
 }
@@ -32,19 +31,22 @@ export function reducer(state: PostState = initialState, action: fromPosts.PostA
       return {
         ...state,
         loading: false,
-        error: true
       }
     case fromPosts.PostActionType.LOAD_POSTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: false,
         loaded: true,
-        posts: action.payload.posts
+        data: action.payload.posts
+      }
+    case PostActionType.REMOVE_POST:
+      return {
+        ...state,
+        data: state.data.filter(({id}) => id !== action.payload.postId)
       }
     default:
       return state;
   }
 }
 
-export const getPosts = (state: PostState) => state.posts;
+export const getPosts = (state: PostState) => state.data;
