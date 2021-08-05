@@ -5,29 +5,41 @@ export enum PostActionType {
   LOAD_POSTS = '[Posts] Load Posts',
   LOAD_POSTS_SUCCESS = '[Posts] Load Posts Success',
   LOAD_POSTS_FAIL = '[Posts] Load Posts Fail',
-  REMOVE_POST = '[Posts] Remove Post'
+  REMOVE_POST = '[Posts] Remove Post',
+  REMOVE_POST_SUCCESS = '[Posts] Remove Post Success',
+  REMOVE_POST_FAIL = '[Posts] Remove Post Fail',
 }
 
 export class LoadPostAction implements Action {
   readonly type = PostActionType.LOAD_POSTS;
 }
 
-interface LoadPostSuccessPayload {
+interface LoadPostsSuccessPayload {
   posts: Array<Post>;
 }
 
-export class LoadPostSuccessAction implements Action {
+export class LoadPostsSuccessAction implements Action {
   readonly type = PostActionType.LOAD_POSTS_SUCCESS;
 
-  constructor(private _payload: LoadPostSuccessPayload) {}
+  constructor(private _payload: LoadPostsSuccessPayload) {}
 
-  get payload(): LoadPostSuccessPayload {
+  get payload(): LoadPostsSuccessPayload {
     return this._payload;
   }
 }
 
-export class LoadPostFailAction implements Action {
+interface LoadPostsFailPayload {
+  error: Error;
+}
+
+export class LoadPostsFailAction implements Action {
   readonly type = PostActionType.LOAD_POSTS_FAIL;
+
+  constructor(private _payload: LoadPostsFailPayload) {}
+
+  get payload(): LoadPostsFailPayload {
+    return this._payload;
+  }
 }
 
 interface RemovePostPayload {
@@ -44,4 +56,38 @@ export class RemovePostAction implements Action {
   }
 }
 
-export type PostAction = LoadPostAction | LoadPostSuccessAction | LoadPostFailAction | RemovePostAction;
+interface RemovePostSuccessPayload {
+  postId: number;
+}
+
+export class RemovePostSuccessAction implements Action {
+  readonly type = PostActionType.REMOVE_POST_SUCCESS;
+
+  constructor(private _payload: RemovePostSuccessPayload) {}
+
+  get payload(): RemovePostSuccessPayload {
+    return this._payload;
+  }
+}
+
+interface RemovePostFailPayload {
+  error: Error;
+}
+
+export class RemovePostFailAction implements Action {
+  readonly type = PostActionType.REMOVE_POST_FAIL;
+
+  constructor(private _payload: RemovePostFailPayload) {}
+
+  get payload(): RemovePostFailPayload {
+    return this._payload;
+  }
+}
+
+export type PostAction =
+  | LoadPostAction
+  | LoadPostsSuccessAction
+  | LoadPostsFailAction
+  | RemovePostAction
+  | RemovePostSuccessAction
+  | RemovePostFailAction;

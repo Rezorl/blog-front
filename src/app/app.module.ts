@@ -6,6 +6,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NavBarModule} from './nav-bar';
 import {StoreModule} from '@ngrx/store';
 import {AppConfigModule} from './config';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {AppConfigModule} from './config';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     HttpClientModule,
     NavBarModule,
     AppConfigModule,
