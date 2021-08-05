@@ -7,12 +7,14 @@ export interface PostState {
   loading: boolean;
   loaded: boolean;
   error?: Error;
+  adding: boolean;
 }
 
 const initialState: PostState = {
   data: [],
   loading: false,
-  loaded: false
+  loaded: false,
+  adding: false
 }
 
 export function reducer(state: PostState = initialState, action: fromPosts.PostAction): PostState {
@@ -47,10 +49,28 @@ export function reducer(state: PostState = initialState, action: fromPosts.PostA
         ...state,
         error: action.payload.error
       }
+    case PostActionType.ADD_POST:
+      return {
+        ...state,
+        adding: true
+      }
+    case PostActionType.ADD_POST_SUCCESS:
+      return {
+        ...state,
+        adding: false,
+        data: [...state.data, action.payload.post]
+      };
+    case PostActionType.ADD_POST_FAIL:
+      return {
+        ...state,
+        adding: false,
+        error: action.payload.error
+      };
     default:
       return state;
   }
 }
 
-export const getPosts = (state: PostState) => state.data;
-export const getLoading = (state: PostState) => state.loading;
+export const getPosts = ({data}: PostState) => data;
+export const getLoading = ({loading}: PostState) => loading;
+export const getAdding = ({adding}: PostState) => adding;

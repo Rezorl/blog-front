@@ -14,6 +14,12 @@
   },
   "posts": {
     "display": "Display",
-    "remove": "Remove"
+    "remove": "Remove",
+    "add": "Add post"
+  },
+  "add-post": {
+    "title": "Title",
+    "description": "Text",
+    "add": "Add"
   }
 }

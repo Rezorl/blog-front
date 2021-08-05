@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import * as fromPosts from '../store'
 import {SERVER} from '../../../environments';
 import {mapTo} from 'rxjs/operators';
+
+import * as fromPosts from '../store'
+import * as fromDto from '../dto';
 
 const POST_URI = '/posts'
 
@@ -23,5 +25,9 @@ export class PostService {
       .pipe(
         mapTo(id)
       );
+  }
+
+  addPost(addPostRequest: fromDto.AddPostRequest): Observable<fromPosts.Post> {
+    return this.http.post<fromPosts.Post>(`${SERVER.URL_API}${POST_URI}`, addPostRequest);
   }
 }

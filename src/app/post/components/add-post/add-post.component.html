@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row mt-5">
+    <form [formGroup]="postForm" (ngSubmit)="addPost()">
+      <div class="mb-3">
+        <label for="titleInput" class="form-label">{{'add-post.title' | translate}}</label>
+        <input formControlName="title" class="form-control" id="titleInput">
+      </div>
+      <div class="mb-3">
+        <label for="textInput" class="form-label">{{'add-post.description' | translate}}</label>
+        <textarea formControlName="description" class="form-control" id="textInput" rows="3"></textarea>
+      </div>
+
+      <div>
+        <div class="spinner-border text-primary" role="status" *ngIf="adding$ | async"></div>
+        <button type="submit" *ngIf="!(adding$ | async)"
+                [disabled]="postForm.invalid"
+                class="btn btn-primary mb-3">
+          {{'add-post.add' | translate}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

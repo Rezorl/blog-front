@@ -1,4 +1,6 @@
-import {PostsComponent} from './posts-component/posts.component';
+import {PostsComponent} from './posts/posts.component';
+import {AddPostComponent} from './add-post/add-post.component';
 
-export * from './posts-component/posts.component';
-export const components = [PostsComponent];
+export * from './posts/posts.component';
+export * from './add-post/add-post.component';
+export const components = [PostsComponent, AddPostComponent];

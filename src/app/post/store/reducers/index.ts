@@ -6,3 +6,4 @@ export * from './post.reducer';
 export const getPostsState = createFeatureSelector<fromPosts.PostState>('posts');
 export const getPosts = createSelector(getPostsState, fromPosts.getPosts);
 export const getLoading = createSelector(getPostsState, fromPosts.getLoading);
+export const getAdding = createSelector(getPostsState, fromPosts.getAdding);

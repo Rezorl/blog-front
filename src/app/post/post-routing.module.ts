@@ -1,11 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {PostsComponent} from './components';
+import {AddPostComponent, PostsComponent} from './components';
 
 const routes: Routes = [
   {
     path: '',
     component: PostsComponent
+  },
+  {
+    path: 'add',
+    component: AddPostComponent
   }
 ];
 

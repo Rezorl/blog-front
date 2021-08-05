@@ -8,6 +8,9 @@ export enum PostActionType {
   REMOVE_POST = '[Posts] Remove Post',
   REMOVE_POST_SUCCESS = '[Posts] Remove Post Success',
   REMOVE_POST_FAIL = '[Posts] Remove Post Fail',
+  ADD_POST = '[Posts] Add Post',
+  ADD_POST_SUCCESS = '[Posts] ADD Post Success',
+  ADD_POST_FAIL = '[Posts] ADD Post Fail',
 }
 
 export class LoadPostAction implements Action {
@@ -84,10 +87,56 @@ export class RemovePostFailAction implements Action {
   }
 }
 
+interface AddPostPayload {
+  title: string;
+  description: string;
+}
+
+export class AddPostAction implements Action {
+  readonly type = PostActionType.ADD_POST;
+
+  constructor(private _payload: AddPostPayload) {}
+
+  get payload(): AddPostPayload {
+    return this._payload;
+  }
+}
+
+interface AddPostSuccessPayload {
+  post: Post;
+}
+
+export class AddPostSuccessAction implements Action {
+  readonly type = PostActionType.ADD_POST_SUCCESS;
+
+  constructor(private _payload: AddPostSuccessPayload) {}
+
+  get payload(): AddPostSuccessPayload {
+    return this._payload;
+  }
+}
+
+interface AddPostFailPayload {
+  error: Error;
+}
+
+export class AddPostFailAction implements Action {
+  readonly type = PostActionType.ADD_POST_FAIL;
+
+  constructor(private _payload: AddPostFailPayload) {}
+
+  get payload(): AddPostFailPayload {
+    return this._payload;
+  }
+}
+
 export type PostAction =
   | LoadPostAction
   | LoadPostsSuccessAction
   | LoadPostsFailAction
   | RemovePostAction
   | RemovePostSuccessAction
-  | RemovePostFailAction;
+  | RemovePostFailAction
+  | AddPostAction
+  | AddPostSuccessAction
+  | AddPostFailAction;

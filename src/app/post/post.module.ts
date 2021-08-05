@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import {StoreModule} from '@ngrx/store';
 import {HttpClientModule} from '@angular/common/http';
 import {EffectsModule} from '@ngrx/effects';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import * as fromServices from './services';
 import * as fromPosts from './store';
@@ -24,6 +25,7 @@ import * as fromEffects from './effects';
     StoreModule.forFeature('posts', fromPosts.reducer),
     HttpClientModule,
     EffectsModule.forFeature(fromEffects.effects),
+    ReactiveFormsModule
   ],
   providers: fromServices.services
 })

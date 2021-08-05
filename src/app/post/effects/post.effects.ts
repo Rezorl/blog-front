@@ -2,8 +2,10 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as fromServices from '../services';
 import * as fromPosts from '../store'
-import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
+import {catchError, map, mergeMap, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
+import {Router} from '@angular/router';
+import {ROUTE} from '../../app-routing.module';
 
 @Injectable()
 export class PostEffects {
@@ -36,9 +38,25 @@ export class PostEffects {
       )
   );
 
+  private readonly addPost$ = createEffect(
+    () => this.actions$
+      .pipe(
+        ofType<fromPosts.AddPostAction>(fromPosts.PostActionType.ADD_POST),
+        mergeMap(
+          ({payload}) => this.postService.addPost(payload)
+            .pipe(
+              tap(() => this.router.navigate([ROUTE.POSTS])),
+              map(post => new fromPosts.AddPostSuccessAction({post})),
+              catchError(error => of(new fromPosts.AddPostFailAction({error})))
+            )
+        )
+      )
+  );
+
   constructor(
     private readonly actions$: Actions,
-    private readonly postService: fromServices.PostService
+    private readonly postService: fromServices.PostService,
+    private readonly router: Router
   ) {
   }
 }
