@@ -22,7 +22,7 @@ export function reducer(state: PostState = initialState, action: fromPosts.PostA
     case fromPosts.PostActionType.LOAD_POSTS:
       return {
         ...state,
-        loading: true,
+        loading: !state.loaded,
         error: undefined
       }
     case fromPosts.PostActionType.LOAD_POSTS_FAIL:
@@ -74,3 +74,4 @@ export function reducer(state: PostState = initialState, action: fromPosts.PostA
 export const getPosts = ({data}: PostState) => data;
 export const getLoading = ({loading}: PostState) => loading;
 export const getAdding = ({adding}: PostState) => adding;
+export const getLoaded = ({loaded}: PostState) => loaded;

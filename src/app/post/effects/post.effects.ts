@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {Actions, concatLatestFrom, createEffect, ofType} from '@ngrx/effects';
 import * as fromServices from '../services';
 import * as fromPosts from '../store'
-import {catchError, map, mergeMap, switchMap, tap} from 'rxjs/operators';
+import {catchError, filter, map, mergeMap, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {Router} from '@angular/router';
 import {ROUTE} from '../../app-routing.module';
+import {Store} from '@ngrx/store';
 
 @Injectable()
 export class PostEffects {
@@ -14,6 +15,8 @@ export class PostEffects {
     () => this.actions$
       .pipe(
         ofType<fromPosts.LoadPostAction>(fromPosts.PostActionType.LOAD_POSTS),
+        concatLatestFrom(() => this.store.select(fromPosts.getLoaded)),
+        filter(([_, loaded]) => !loaded),
         switchMap(
           () => this.postService.fetchPosts()
             .pipe(
@@ -56,7 +59,8 @@ export class PostEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly postService: fromServices.PostService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly store: Store<fromPosts.PostState>
   ) {
   }
 }
