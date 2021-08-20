@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as fromPosts from '../../store';
 import {Router} from '@angular/router';
-import {ROUTE} from '../../../app-routing.module';
+import {APP_ROUTE} from '../../../app-routing.module';
 
 @Component({
   selector: 'app-posts-component',
@@ -28,6 +28,6 @@ export class PostsComponent implements OnInit {
   }
 
   onAddClick() {
-    this.router.navigate([ROUTE.ADD_POST]);
+    this.router.navigate([APP_ROUTE.ADD_POST]);
   }
 }

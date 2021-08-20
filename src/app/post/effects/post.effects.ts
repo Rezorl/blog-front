@@ -5,7 +5,7 @@ import * as fromPosts from '../store'
 import {catchError, filter, map, mergeMap, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {Router} from '@angular/router';
-import {ROUTE} from '../../app-routing.module';
+import {APP_ROUTE} from '../../app-routing.module';
 import {Store} from '@ngrx/store';
 
 @Injectable()
@@ -48,7 +48,7 @@ export class PostEffects {
         mergeMap(
           ({payload}) => this.postService.addPost(payload)
             .pipe(
-              tap(() => this.router.navigate([ROUTE.POSTS])),
+              tap(() => this.router.navigate([APP_ROUTE.POSTS])),
               map(post => new fromPosts.AddPostSuccessAction({post})),
               catchError(error => of(new fromPosts.AddPostFailAction({error})))
             )

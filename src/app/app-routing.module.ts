@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
-export class ROUTE {
-  public static readonly POSTS = 'posts';
-  public static readonly ADD_POST = '/posts/add';
-  public static readonly NOT_FOUND = 'not-found';
+export enum APP_ROUTE {
+  POSTS = 'posts',
+  ADD_POST = '/posts/add',
+  NOT_FOUND = 'not-found'
 }
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: ROUTE.POSTS,
+    redirectTo: APP_ROUTE.POSTS,
   },
   {
-    path: ROUTE.POSTS,
+    path: APP_ROUTE.POSTS,
     loadChildren: () => import('./post/post.module').then(({PostModule}) => PostModule)
   },
   {
-    path: ROUTE.NOT_FOUND,
+    path: APP_ROUTE.NOT_FOUND,
     loadChildren: () => import('./page-not-found/page-not-found.module')
       .then(({PageNotFoundModule}) => PageNotFoundModule)
   },
