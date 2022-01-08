@@ -4,7 +4,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
 export const TranslateConfigModule = TranslateModule.forRoot({
   useDefaultLang: true,
-  defaultLanguage: navigator.language,
+  defaultLanguage: 'pl',
   loader: {
     provide: TranslateLoader,
     useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '../assets/i18n/', '.json'),
